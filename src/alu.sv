@@ -20,7 +20,8 @@ always @(*) begin
 		`ALU_OR  : alu_result = srcA | srcB;
 		`ALU_SLT : alu_result = (srcA < srcB) ? 1 : 0;
 		
-		default:	;
+		default:	alu_result = 0;
+		
 	endcase
 
 end

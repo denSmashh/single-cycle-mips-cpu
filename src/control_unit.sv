@@ -19,7 +19,7 @@ logic [1:0] alu_op;
 
 always @(*) begin
 	
-	casez (opcode)
+	case (opcode)
 		
 		`R_TYPE_OP: begin reg_write = 1; reg_dst = 1; alu_src = 0; branch = 0; mem_write = 0; mem_to_reg = 0; alu_op = 2'b10; end
 		
@@ -27,13 +27,11 @@ always @(*) begin
 	
 		`ADDI_OP	 : begin reg_write = 1; reg_dst = 0; alu_src = 1; branch = 0; mem_write = 0; mem_to_reg = 0; alu_op = 2'b00; end
 		
-		`SW_OP	 : begin reg_write = 0; alu_src = 1; branch = 0; mem_write = 1; alu_op = 2'b00; end
+		`SW_OP	 : begin reg_write = 0; reg_dst = 0; alu_src = 1; branch = 0; mem_write = 1; mem_to_reg = 0; alu_op = 2'b00; end
 		
-		`BEQ_OP	 : begin reg_write = 0; alu_src = 0; branch = 1; mem_write = 0; alu_op = 2'b01; end
-				
-		//`J_OP	 	 : begin reg_write = 0; mem_write = 0;  end
-	
-		default: ;
+		`BEQ_OP	 : begin reg_write = 0; reg_dst = 0; alu_src = 0; branch = 1; mem_write = 0; mem_to_reg = 0; alu_op = 2'b01; end
+					
+		default	 : begin reg_write = 0; reg_dst = 0; alu_src = 0; branch = 0; mem_write = 0; mem_to_reg = 0; alu_op = 2'b00; end
 		
 	endcase 
 end
