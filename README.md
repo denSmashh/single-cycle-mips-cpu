@@ -1,6 +1,6 @@
 Single cycle mips cpu from book H&H "Digital design and computer architecture"
 
-Support command: R-type commands, lw, sw, beq, addi.
+Support command: R-type commands, lw, sw, beq, addi
 
 Testbench use this command
 
